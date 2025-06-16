@@ -28,7 +28,7 @@
 *.lai
 *.la
 *.a
-# *.lib
+*.lib
 
 # Executables
 *.exe
@@ -430,6 +430,19 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# 라이브러리 포함
+!/lib/Assimp/*
+!/lib/Assimp/*/*.lib
+!/lib/Assimp/*/*.dll
+!/lib/Assimp/*/*.pdb
+!/lib/GLEW/*
+!/lib/GLEW/*/*.lib
+!/lib/GLEW/*/*.dll
+!/lib/GLEW/*/*.pdb
+!/lib/GLFW/*
+!/lib/GLFW/*.lib
+!/lib/GLFW/*.dll
 
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
