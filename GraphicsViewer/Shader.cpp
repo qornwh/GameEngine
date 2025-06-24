@@ -49,7 +49,7 @@ void Shader::SetActive()
 void Shader::SetUniformInt(const char* name, int value)
 {
     GLuint loc = glGetUniformLocation(shader_program_, name);
-    glUniform1d(loc, value);
+    glUniform1i(loc, value);
 }
 
 void Shader::SetUniformFloat(const char* name, float value)

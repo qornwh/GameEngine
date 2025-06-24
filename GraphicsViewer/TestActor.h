@@ -11,7 +11,6 @@ public:
 
 	void Start() override;
 	void Update(float deltaTime) override;
-	void Destory() override;
 
 private:
 	MeshComponent* mesh_comp_;

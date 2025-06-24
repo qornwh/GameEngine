@@ -16,7 +16,7 @@ public:
 
 	virtual void Start() {};
 	virtual void Update(float deltaTime) {};
-	virtual void Destory() {};
+	void Destory();
 
 	void Init(glm::vec3 position = vec3Zero, glm::vec3 rotate = vec3Zero);
 	void SetScale(const glm::vec3& scale);

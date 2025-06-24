@@ -6,6 +6,11 @@
 Mesh::Mesh(VertexArray vao, std::vector<Texture> textures) : vao_(vao)
 {
     textures_ = textures;
+
+    for (auto& texture : textures)
+    {
+        material_.SetTexture(texture);
+    }
 }
 
 Mesh::~Mesh()
@@ -17,7 +22,7 @@ void Mesh::Draw(Shader& shader)
     for (int i = 0; i < textures_.size(); ++i)
     {
         auto& texture = textures_[i];
-        texture.SetActive();
+        texture.SetActive(shader);
     }
     vao_.SetActive();
     glDrawElements(GL_TRIANGLES, vao_.GetIndexCount(), GL_UNSIGNED_INT, nullptr);

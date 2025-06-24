@@ -115,135 +115,33 @@ Mesh Model::ProcessMesh(aiMesh* mesh, const aiScene* scene)
 	if (mesh->mMaterialIndex >= 0)
 	{
 		aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
-
-		aiString texPath;
-		if (material->GetTexture(aiTextureType_DIFFUSE, 0, &texPath) == AI_SUCCESS) {
-			
-			std::string path(path_); 
-			path.append(texPath.data);
-			AddTexture(path);
-			auto iter = texPaths_.find(path);
-			if (iter != texPaths_.end())
-			{
-				textures.push_back(iter->second);
-			}
-			std::cout << "Diffuse texture file: " << texPath.C_Str() << " - " << iter->second.GetId() << std::endl;
-		}
-		/*if (material->GetTexture(aiTextureType_SPECULAR, 0, &texPath) == AI_SUCCESS) {
-			std::cout << "Specular texture file: " << texPath.C_Str() << std::endl;
-
-			std::string path(path_);
-			path.append(texPath.data);
-			AddTexture(path);
-			auto iter = texPaths_.find(path);
-			if (iter != texPaths_.end())
-			{
-				textures.push_back(iter->second);
-			}
-		}
-		if (material->GetTexture(aiTextureType_NORMALS, 0, &texPath) == AI_SUCCESS) {
-			std::cout << "Normals texture file: " << texPath.C_Str() << std::endl;
-
-			std::string path(path_);
-			path.append(texPath.data);
-			AddTexture(path);
-			auto iter = texPaths_.find(path);
-			if (iter != texPaths_.end())
-			{
-				textures.push_back(iter->second);
-			}
-		}
-		if (material->GetTexture(aiTextureType_HEIGHT, 0, &texPath) == AI_SUCCESS) {
-			std::cout << "Height texture file: " << texPath.C_Str() << std::endl;
-
-			std::string path(path_);
-			path.append(texPath.data);
-			AddTexture(path);
-			auto iter = texPaths_.find(path);
-			if (iter != texPaths_.end())
-			{
-				textures.push_back(iter->second);
-			}
-		}
-		if (material->GetTexture(aiTextureType_AMBIENT, 0, &texPath) == AI_SUCCESS) {
-			std::cout << "Ambient texture file: " << texPath.C_Str() << std::endl;
-
-			std::string path(path_);
-			path.append(texPath.data);
-			AddTexture(path);
-			auto iter = texPaths_.find(path);
-			if (iter != texPaths_.end())
-			{
-				textures.push_back(iter->second);
-			}
-		}
-		if (material->GetTexture(aiTextureType_EMISSIVE, 0, &texPath) == AI_SUCCESS) {
-			std::cout << "Emissive texture file: " << texPath.C_Str() << std::endl;
-
-			std::string path(path_);
-			path.append(texPath.data);
-			AddTexture(path);
-			auto iter = texPaths_.find(path);
-			if (iter != texPaths_.end())
-			{
-				textures.push_back(iter->second);
-			}
-		}
-		if (material->GetTexture(aiTextureType_OPACITY, 0, &texPath) == AI_SUCCESS) {
-			std::cout << "Opacity texture file: " << texPath.C_Str() << std::endl;
-
-			std::string path(path_);
-			path.append(texPath.data);
-			AddTexture(path);
-			auto iter = texPaths_.find(path);
-			if (iter != texPaths_.end())
-			{
-				textures.push_back(iter->second);
-			}
-		}
-		if (material->GetTexture(aiTextureType_METALNESS, 0, &texPath) == AI_SUCCESS) {
-			std::cout << "Metalness texture file: " << texPath.C_Str() << std::endl;
-
-			std::string path(path_);
-			path.append(texPath.data);
-			AddTexture(path);
-			auto iter = texPaths_.find(path);
-			if (iter != texPaths_.end())
-			{
-				textures.push_back(iter->second);
-			}
-		}
-		if (material->GetTexture(aiTextureType_DIFFUSE_ROUGHNESS, 0, &texPath) == AI_SUCCESS) {
-			std::cout << "Diffus Roughness texture file: " << texPath.C_Str() << std::endl;
-
-			std::string path(path_);
-			path.append(texPath.data);
-			AddTexture(path);
-			auto iter = texPaths_.find(path);
-			if (iter != texPaths_.end())
-			{
-				textures.push_back(iter->second);
-			}
-		}
-		if (material->GetTexture(aiTextureType_AMBIENT_OCCLUSION, 0, &texPath) == AI_SUCCESS) {
-			std::cout << "Ambient Occlusion texture file: " << texPath.C_Str() << std::endl;
-
-			std::string path(path_);
-			path.append(texPath.data);
-			AddTexture(path);
-			auto iter = texPaths_.find(path);
-			if (iter != texPaths_.end())
-			{
-				textures.push_back(iter->second);
-			}
-		}*/
+		ProcessMaterial(material, textures);
 	}
 
 	VertexArray vao(vertexs, vertexs.size(), indices.data(), indices.size());
 	return Mesh(vao, textures);
 }
 
-void Model::AddTexture(std::string& path)
+void Model::ProcessMaterial(aiMaterial* material, std::vector<Texture>& textures)
+{
+	for (auto type : NAssimpTexture::GetAssimpTextureList())
+	{
+		aiString texPath;
+		if (material->GetTexture(type, 0, &texPath) == AI_SUCCESS) {
+
+			std::string path(path_);
+			path.append(texPath.data);
+			AddTexture(path, type);
+			auto iter = texPaths_.find(path);
+			if (iter != texPaths_.end())
+			{
+				textures.push_back(iter->second);
+			}
+		}
+	}
+}
+
+void Model::AddTexture(std::string& path, int type)
 {
 	auto iter = texPaths_.find(path);
 	if (iter == texPaths_.end())
@@ -251,7 +149,20 @@ void Model::AddTexture(std::string& path)
 		aiString resultPath(path_);
 		resultPath.Append(path.c_str());
 		Texture texture;
-		texture.Load(path.c_str());
-		texPaths_.emplace(path, texture);
+		bool result = texture.Load(path.c_str());
+		if (result)
+		{
+			texture.SetType(type);
+			texPaths_.emplace(path, texture);
+		}
 	}
+}
+
+std::vector<aiTextureType>& NAssimpTexture::GetAssimpTextureList()
+{
+	static std::vector<aiTextureType> NAssimpTextureList = {
+		aiTextureType_DIFFUSE, aiTextureType_BASE_COLOR, aiTextureType_METALNESS, aiTextureType_DIFFUSE_ROUGHNESS,
+		aiTextureType_NORMALS, aiTextureType_EMISSIVE, aiTextureType_AMBIENT_OCCLUSION
+	};
+	return NAssimpTextureList;
 }

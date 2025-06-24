@@ -3,6 +3,8 @@
 #include <GL/glew.h>
 #include <stb/stb_image.h>
 #include <iostream>
+#include <assimp/material.h>
+#include "Shader.h"
 
 ImageLoad::ImageLoad()
 {
@@ -18,12 +20,13 @@ unsigned char* ImageLoad::ReadImage(const std::string& fileName, int* width, int
 	return stbi_load(fileName.c_str(), width, height, nrChannels, 0);
 }
 
-Texture::Texture() : texture_(0), width_(0), height_(0)
+Texture::Texture() : texture_(0), width_(0), height_(0), type_(0)
 {
 }
 
 Texture::~Texture()
 {
+	Unload();
 }
 
 Texture::Texture(const Texture& other)
@@ -31,6 +34,7 @@ Texture::Texture(const Texture& other)
 	texture_ = other.texture_;
 	width_ = other.width_;
 	height_ = other.height_;
+	type_ = other.type_;
 }
 
 Texture::Texture(Texture&& other) noexcept
@@ -38,6 +42,7 @@ Texture::Texture(Texture&& other) noexcept
 	texture_ = other.texture_;
 	width_ = other.width_;
 	height_ = other.height_;
+	type_ = other.type_;
 }
 
 Texture& Texture::operator=(const Texture& other)
@@ -45,6 +50,7 @@ Texture& Texture::operator=(const Texture& other)
 	texture_ = other.texture_;
 	width_ = other.width_;
 	height_ = other.height_;
+	type_ = other.type_;
 	return *this;
 }
 
@@ -53,6 +59,7 @@ Texture& Texture::operator=(Texture&& other) noexcept
 	texture_ = other.texture_;
 	width_ = other.width_;
 	height_ = other.height_;
+	type_ = other.type_;
 	return *this;
 }
 
@@ -101,8 +108,12 @@ void Texture::Unload()
 	glDeleteTextures(1, &texture_);
 }
 
-void Texture::SetActive(int number)
+void Texture::SetType(int type)
 {
-	glActiveTexture(GL_TEXTURE0 + number);
+	type_ = type;
+}
+
+void Texture::SetActive(Shader& shader)
+{
 	glBindTexture(GL_TEXTURE_2D, texture_);
 }

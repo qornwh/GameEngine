@@ -1,5 +1,8 @@
 #include "Actor.h"
 #include <algorithm>
+#include "Component.h"
+#include "GameWorld.h"
+#include "GameGlobals.h"
 
 Actor::Actor()
 {
@@ -10,6 +13,27 @@ Actor::Actor()
 
 Actor::~Actor()
 {
+}
+
+void Actor::Destory()
+{
+	for (auto child : GetChildren())
+	{
+		child->Destory();
+		delete child;
+	}
+
+	for (auto comp : GetComponent())
+	{
+		comp->Remove();
+		delete comp;
+	}
+
+	GameWorld* world = Game::World();
+	if (world)
+	{
+		world->DestoryActor(this);
+	}
 }
 
 void Actor::Init(glm::vec3 position, glm::vec3 rotate)

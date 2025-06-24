@@ -14,6 +14,8 @@
 
 Renderer::Renderer()
 {
+	// 디폴트 텍스처 로드
+	texture_.Load("Assets/base/base.png");
 }
 
 Renderer::~Renderer()
@@ -67,6 +69,7 @@ void Renderer::Draw()
 		shader_.SetUniformFloat("uDirectLight.specularStrength", dl.specularStrength);
 		shader_.SetUniformVec3("uCameraPosition", camera->GetPosition());
 
+		texture_.SetActive(shader_);
 		comp->GetModelPtr()->Draw(shader_);
 	}
 }
@@ -83,4 +86,9 @@ void Renderer::RemoveMeshComponent(MeshComponent* component)
 	{
 		comps_.erase(it);
 	}
+}
+
+Texture& Renderer::GetDefaultTexture()
+{
+	return texture_;
 }

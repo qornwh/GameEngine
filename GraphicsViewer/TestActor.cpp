@@ -10,6 +10,7 @@ TestActor::TestActor() : mesh_comp_(nullptr)
 
 TestActor::~TestActor()
 {
+	Destory();
 }
 
 void TestActor::Start()
@@ -31,20 +32,5 @@ void TestActor::Update(float deltaTime)
 		roate.y += dAngle;
 		if (roate.y >= 360)
 			roate.y -= 360.f;
-	}
-}
-
-void TestActor::Destory()
-{
-	for (auto child : GetChildren())
-	{
-		child->Destory();
-		delete child;
-	}
-
-	for (auto comp : GetComponent())
-	{
-		comp->Remove();
-		delete comp;
 	}
 }

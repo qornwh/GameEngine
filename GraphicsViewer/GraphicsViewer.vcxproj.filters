@@ -65,6 +65,18 @@
     <ClInclude Include="DirectionalLight.h">
       <Filter>Game\Light</Filter>
     </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="PointLight.h">
+      <Filter>Game\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeActor.h">
+      <Filter>Game\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Spotlight.h">
+      <Filter>Game\Light</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -149,6 +161,18 @@
     <ClCompile Include="DirectionalLight.cpp">
       <Filter>Game\Light</Filter>
     </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="PointLight.cpp">
+      <Filter>Game\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeActor.cpp">
+      <Filter>Game\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Spotlight.cpp">
+      <Filter>Game\Light</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
@@ -202,6 +226,9 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="Shaders\phong.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\base_pbr.frag">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>
