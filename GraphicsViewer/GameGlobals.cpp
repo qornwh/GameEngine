@@ -1,6 +1,7 @@
 #include "GameGlobals.h"
 #include "GameEngine.h"
 #include "GameWorld.h"
+#include "ActorFactory.h"
 
 GameEngine& Game::Engine()
 {
@@ -10,6 +11,12 @@ GameEngine& Game::Engine()
 GameWorld* Game::World()
 {
 	return GameEngine::GetInstance().GetWorld();
+}
+
+ActorFactory* Game::AFactory()
+{
+	// TODO: 여기에 return 문을 삽입합니다.
+	return GameEngine::GetInstance().GetWorld()->GetActorFactory();
 }
 
 VertexArray Game::Cube::GetCubeVertex()
@@ -67,6 +74,6 @@ VertexArray Game::Cube::GetCubeVertex()
 		20,21,22, 22,23,20
 	};
 
-	static VertexArray vao(vertexs, vertexs.size(), cubeIndices, 24);
+	static VertexArray vao(vertexs, static_cast<unsigned int>(vertexs.size()), cubeIndices, 24);
 	return vao;
 }

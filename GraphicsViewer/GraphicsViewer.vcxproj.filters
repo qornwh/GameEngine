@@ -77,6 +77,12 @@
     <ClInclude Include="Spotlight.h">
       <Filter>Game\Light</Filter>
     </ClInclude>
+    <ClInclude Include="ShadowFBO.h">
+      <Filter>Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ActorFactory.h">
+      <Filter>Uilts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -173,6 +179,12 @@
     <ClCompile Include="Spotlight.cpp">
       <Filter>Game\Light</Filter>
     </ClCompile>
+    <ClCompile Include="ShadowFBO.cpp">
+      <Filter>Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="ActorFactory.cpp">
+      <Filter>Uilts</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
@@ -217,6 +229,9 @@
     <Filter Include="Game\Light">
       <UniqueIdentifier>{88a86c24-f7ec-4bdb-a293-d365686cd8cd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Test2">
+      <UniqueIdentifier>{364f99a2-6918-4123-99e8-b805cc1f762e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\base.frag">
@@ -229,6 +244,12 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="Shaders\base_pbr.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\shadow.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\shadow.frag">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

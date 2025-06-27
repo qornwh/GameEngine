@@ -4,7 +4,7 @@
 #include "GameWorld.h"
 #include "DirectionalLight.h"
 
-TestActor::TestActor() : mesh_comp_(nullptr)
+TestActor::TestActor() : character_comp_(nullptr)
 {
 }
 
@@ -15,8 +15,8 @@ TestActor::~TestActor()
 
 void TestActor::Start()
 {
-	mesh_comp_ = new MeshComponent(this, "Assets/NPC_Enzo_Model/obj/obj.obj");
-	AddComponent(mesh_comp_);
+	character_comp_ = new MeshComponent(this, "Assets/NPC_Enzo_Model/obj/obj.obj");
+	AddComponent(character_comp_);
 }
 
 void TestActor::Update(float deltaTime)

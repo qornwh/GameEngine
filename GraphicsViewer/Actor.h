@@ -24,7 +24,7 @@ public:
 	void SetRotate(const glm::vec3& rotate);
 
 	void AddChild(Actor* child);
-	void RemoveChild(Actor* child);
+	bool RemoveChild(Actor* child);
 	void AddComponent(Component* comp);
 	void RemoveComponent(Component* comp);
 

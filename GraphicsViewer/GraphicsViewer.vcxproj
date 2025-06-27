@@ -150,6 +150,7 @@ xcopy "$(ProjectDir)\..\lib\Assimp\$(Configuration)\*.dll" "$(OutDir)" /i /s /y<
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
+    <ClInclude Include="ActorFactory.h" />
     <ClInclude Include="CameraActor.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="CubeActor.h" />
@@ -168,6 +169,7 @@ xcopy "$(ProjectDir)\..\lib\Assimp\$(Configuration)\*.dll" "$(OutDir)" /i /s /y<
     <ClInclude Include="project.md" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="ShadowFBO.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Spotlight.h" />
     <ClInclude Include="TestActor.h" />
@@ -185,6 +187,7 @@ xcopy "$(ProjectDir)\..\lib\Assimp\$(Configuration)\*.dll" "$(OutDir)" /i /s /y<
     <ClCompile Include="..\include\imgui\imgui_tables.cpp" />
     <ClCompile Include="..\include\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="ActorFactory.cpp" />
     <ClCompile Include="CameraActor.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="CubeActor.cpp" />
@@ -202,6 +205,7 @@ xcopy "$(ProjectDir)\..\lib\Assimp\$(Configuration)\*.dll" "$(OutDir)" /i /s /y<
     <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="ShadowFBO.cpp" />
     <ClCompile Include="Singleton.cpp" />
     <ClCompile Include="Spotlight.cpp" />
     <ClCompile Include="TestActor.cpp" />
@@ -215,6 +219,8 @@ xcopy "$(ProjectDir)\..\lib\Assimp\$(Configuration)\*.dll" "$(OutDir)" /i /s /y<
     <None Include="Shaders\base.vert" />
     <None Include="Shaders\base_pbr.frag" />
     <None Include="Shaders\phong.frag" />
+    <None Include="Shaders\shadow.frag" />
+    <None Include="Shaders\shadow.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

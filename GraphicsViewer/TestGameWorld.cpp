@@ -2,15 +2,17 @@
 #include "TestActor.h"
 #include "CameraActor.h"
 #include "ImGuiActor.h"
+#include "ActorFactory.h"
+#include "GameGlobals.h"
 
 #include "DirectionalLight.h"
 
 void TestGameWorld::Start()
 {
-	TestActor* actor = new TestActor();
+	TestActor* actor = Game::AFactory()->SpawnActor<TestActor>();
 	actor->Start();
 
-	CameraActor* camera = new CameraActor();
+	CameraActor* camera = Game::AFactory()->SpawnActor<CameraActor>();;
 	camera->SetPosition(glm::vec3(0.f, 0.f, 10.f));
 
 	SetMainCamera(camera);
@@ -20,8 +22,6 @@ void TestGameWorld::Start()
 	DirectionalLightActor* directionalLight = new DirectionalLightActor();
 	directionalLight->init();
 	SetDirectionalLight(directionalLight);
-
-	AddActor(actor);
 }
 
 void TestGameWorld::AfterUpdate()

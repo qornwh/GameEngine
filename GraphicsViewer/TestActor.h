@@ -13,7 +13,8 @@ public:
 	void Update(float deltaTime) override;
 
 private:
-	MeshComponent* mesh_comp_;
+	MeshComponent* character_comp_;
+	MeshComponent* floor_comp_;
 
 	// 등속 원운동 1초에 90
 	float angle_ = 1.f;

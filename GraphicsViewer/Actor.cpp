@@ -32,7 +32,7 @@ void Actor::Destory()
 	GameWorld* world = Game::World();
 	if (world)
 	{
-		world->DestoryActor(this);
+		world->DespawnActor(this);
 	}
 }
 
@@ -60,7 +60,7 @@ void Actor::AddChild(Actor* child)
 	children_.emplace_back(child);
 }
 
-void Actor::RemoveChild(Actor* child)
+bool Actor::RemoveChild(Actor* child)
 {
 	auto iter = std::find(children_.begin(), children_.end(), child);
 
@@ -68,7 +68,10 @@ void Actor::RemoveChild(Actor* child)
 	{
 		std::swap(*iter, children_.back());
 		children_.pop_back();
+		delete child;
+		return true;
 	}
+	return false;
 }
 
 void Actor::AddComponent(Component* comp)

@@ -3,13 +3,16 @@
 #include "Renderer.h"
 #include "GameEngine.h"
 #include "Model.h"
+#include "ActorFactory.h"
 #include <GLFW/glfw3.h>
 
 GameWorld::GameWorld()
 {
-	time_ = glfwGetTime();
+	time_ = static_cast<float>(glfwGetTime());
 	renderer_ = new Renderer();
 	renderer_->LoadShader();
+	root_actor_ = new Actor();
+	actor_factory_ = new ActorFactory();
 }
 
 GameWorld::~GameWorld()
@@ -24,35 +27,28 @@ void GameWorld::Update()
 	// 현재 입력된 모든 입력 엑터에 넘기기 or 전역변수 등록후 액터,컴포넌트에서 가져와서 처리
 
 	// 액터 업데이트
-	float deltaTime = (glfwGetTime() - time_) * 1000.f;
-	time_ = glfwGetTime();
-	for (auto actor : actors_)
-	{
-		actor->Update(deltaTime);
-	}
+	float deltaTime = (static_cast<float>(glfwGetTime()) - time_) * 1000.f;
+	time_ = static_cast<float>(glfwGetTime());
+	root_actor_->Update(deltaTime);
 
 	// 그리기
 	renderer_->Draw();
 }
 
-void GameWorld::AddActor(Actor* actor)
+bool GameWorld::DespawnActor(Actor* actor)
 {
-	auto iter = std::find(actors_.begin(), actors_.end(), actor);
-
-	if (iter == actors_.end())
-	{
-		actors_.push_back(actor);
-	}
+	return DespawnActor(root_actor_, actor);
 }
 
-bool GameWorld::DestoryActor(Actor* actor)
+bool GameWorld::DespawnActor(Actor* parent, Actor* actor)
 {
-	auto iter = std::find(actors_.begin(), actors_.end(), actor);
-
-	if (iter != actors_.end())
+	if (parent != nullptr)
 	{
-		actors_.erase(iter);
-		return true;
+		auto iter = std::find(parent->GetChildren().begin(), parent->GetChildren().end(), actor);
+		if (iter != parent->GetChildren().end())
+		{
+			return parent->RemoveChild(reinterpret_cast<Actor*>(actor));
+		}
 	}
 	return false;
 }

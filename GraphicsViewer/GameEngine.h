@@ -4,7 +4,6 @@
 
 struct GLFWwindow;
 class GameWorld;
-class Actor;
 
 class GameEngine : public Singleton<GameEngine>
 {
