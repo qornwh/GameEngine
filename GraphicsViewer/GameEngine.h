@@ -16,6 +16,7 @@ public:
 	void Loop();
 
 	GameWorld* GetWorld() { return world_; }
+	GLFWwindow* GetWindow() { return window_; }
 private:
 	GLFWwindow* window_;
 	GameWorld* world_;

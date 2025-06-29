@@ -26,7 +26,6 @@ Texture::Texture() : texture_(0), width_(0), height_(0), type_(0)
 
 Texture::~Texture()
 {
-	Unload();
 }
 
 Texture::Texture(const Texture& other)

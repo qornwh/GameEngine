@@ -45,7 +45,7 @@
       <Filter>Game\Component</Filter>
     </ClInclude>
     <ClInclude Include="TestActor.h">
-      <Filter>Test</Filter>
+      <Filter>CharaterViewer</Filter>
     </ClInclude>
     <ClInclude Include="GameInstance.h">
       <Filter>Game</Filter>
@@ -57,10 +57,10 @@
       <Filter>Uilts</Filter>
     </ClInclude>
     <ClInclude Include="TestGameWorld.h">
-      <Filter>Test</Filter>
+      <Filter>CharaterViewer</Filter>
     </ClInclude>
     <ClInclude Include="ImGuiActor.h">
-      <Filter>Test</Filter>
+      <Filter>CharaterViewer</Filter>
     </ClInclude>
     <ClInclude Include="DirectionalLight.h">
       <Filter>Game\Light</Filter>
@@ -126,7 +126,7 @@
       <Filter>Game\Component</Filter>
     </ClCompile>
     <ClCompile Include="TestActor.cpp">
-      <Filter>Test</Filter>
+      <Filter>CharaterViewer</Filter>
     </ClCompile>
     <ClCompile Include="GameInstance.cpp">
       <Filter>Game</Filter>
@@ -138,7 +138,7 @@
       <Filter>Uilts</Filter>
     </ClCompile>
     <ClCompile Include="TestGameWorld.cpp">
-      <Filter>Test</Filter>
+      <Filter>CharaterViewer</Filter>
     </ClCompile>
     <ClCompile Include="..\include\imgui\imgui_tables.cpp">
       <Filter>Uilts\Source\imgui</Filter>
@@ -162,7 +162,7 @@
       <Filter>Uilts\Source\imgui</Filter>
     </ClCompile>
     <ClCompile Include="ImGuiActor.cpp">
-      <Filter>Test</Filter>
+      <Filter>CharaterViewer</Filter>
     </ClCompile>
     <ClCompile Include="DirectionalLight.cpp">
       <Filter>Game\Light</Filter>
@@ -217,9 +217,6 @@
     <Filter Include="Game\Component">
       <UniqueIdentifier>{cd74f3c6-9421-4c98-8092-211e28cf0208}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Test">
-      <UniqueIdentifier>{df685c9e-b7ac-4c6c-8c19-81740714e943}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Uilts\Source">
       <UniqueIdentifier>{89288f0b-c1dc-4cb4-be8e-f8ce05b0c3f9}</UniqueIdentifier>
     </Filter>
@@ -231,6 +228,9 @@
     </Filter>
     <Filter Include="Test2">
       <UniqueIdentifier>{364f99a2-6918-4123-99e8-b805cc1f762e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CharaterViewer">
+      <UniqueIdentifier>{df685c9e-b7ac-4c6c-8c19-81740714e943}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -21,9 +21,11 @@ public:
 
 	void SetActive();
 
+	glm::vec3 GetForward() override;
+
 private:
 	// Ä«¸Þ¶ó 
-	float fov_ = 45.0f;
+	float fov_ = 20.0f;
 	glm::mat4 perspective_;
 	glm::mat4 orthographic_;
 	

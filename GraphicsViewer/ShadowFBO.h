@@ -17,7 +17,7 @@ private:
 	unsigned int frameBuffer_;
 	unsigned int texture_;
 
-	int SHADOW_WIDTH = 1024;
-	int SHADOW_HEIGHT = 1024;
+	int SHADOW_WIDTH = 2048;
+	int SHADOW_HEIGHT = 2048;
 };
 

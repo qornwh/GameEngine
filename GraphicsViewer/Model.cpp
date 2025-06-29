@@ -10,6 +10,7 @@ Model::Model()
 
 Model::~Model()
 {
+	Unload();
 }
 
 void Model::Load(const std::string& fileName)

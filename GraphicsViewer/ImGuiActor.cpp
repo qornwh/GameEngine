@@ -35,9 +35,32 @@ void ImGuiActor::Draw()
     }
 
     ImGui::End();
+
+    ImGui::Begin("Actor2 Data");
+
+    if (actor_ != nullptr)
+    {
+        ImGui::InputFloat3("Translate", glm::value_ptr(actor2_->GetPosition()));
+        ImGui::InputFloat3("Rotate", glm::value_ptr(actor2_->GetRotate()));
+        ImGui::InputFloat3("Scale", glm::value_ptr(actor2_->GetScale()));
+    }
+    else
+    {
+        glm::vec3 zero = vec3Zero;
+        ImGui::InputFloat3("Translate", &zero[0]);
+        ImGui::InputFloat3("Rotate", &zero[0]);
+        ImGui::InputFloat3("Scale", &zero[0]);
+    }
+
+    ImGui::End();
 }
 
 void ImGuiActor::SetActor(Actor* actor)
 {
     actor_ = actor;
+}
+
+void ImGuiActor::SetActor2(Actor* actor2)
+{
+    actor2_ = actor2;
 }

@@ -2,6 +2,7 @@
 #include "Shader.h"
 #include "Texture.h"
 #include <GLFW/glfw3.h>
+#include "Renderer.h"
 
 Mesh::Mesh(VertexArray vao, std::vector<Texture> textures) : vao_(vao)
 {
@@ -25,6 +26,7 @@ void Mesh::Draw(Shader& shader)
         texture.SetActive(shader);
     }
     vao_.SetActive();
+
     glDrawElements(GL_TRIANGLES, vao_.GetIndexCount(), GL_UNSIGNED_INT, nullptr);
 }
 

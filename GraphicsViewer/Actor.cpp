@@ -15,6 +15,14 @@ Actor::~Actor()
 {
 }
 
+void Actor::Update(float deltaTime)
+{
+	for (auto child : GetChildren())
+	{
+		child->Update(deltaTime);
+	}
+}
+
 void Actor::Destory()
 {
 	for (auto child : GetChildren())
@@ -92,5 +100,12 @@ void Actor::RemoveComponent(Component* comp)
 
 glm::vec3 Actor::GetForward()
 {
-	return glm::quat(rotate_) * vec3Forword;
+	float pitchRad = glm::radians(rotate_.x);
+	float yawRad = glm::radians(rotate_.y);
+
+	glm::vec3 forward;
+	forward.x = cos(pitchRad) * cos(yawRad);
+	forward.y = sin(pitchRad);
+	forward.z = cos(pitchRad) * sin(yawRad);
+	return glm::normalize(forward);
 }

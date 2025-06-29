@@ -15,7 +15,7 @@ public:
 	~Actor();
 
 	virtual void Start() {};
-	virtual void Update(float deltaTime) {};
+	virtual void Update(float deltaTime);
 	void Destory();
 
 	void Init(glm::vec3 position = vec3Zero, glm::vec3 rotate = vec3Zero);
@@ -31,7 +31,7 @@ public:
 	glm::vec3& GetScale() { return scale_; }
 	glm::vec3& GetPosition() { return position_; }
 	glm::vec3& GetRotate() { return rotate_; }
-	glm::vec3 GetForward();
+	virtual glm::vec3 GetForward();
 
 	const std::vector<Actor*>& GetChildren() { return children_; }
 	const std::vector<Component*>& GetComponent() { return components_; }

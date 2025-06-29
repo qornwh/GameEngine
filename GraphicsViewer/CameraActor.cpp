@@ -32,3 +32,17 @@ void CameraActor::SetActive()
 	// 주 카메라가 됨
 	Game::World()->SetMainCamera(this);
 }
+
+glm::vec3 CameraActor::GetForward()
+{
+	// 카메라만 전방벡터 따로 간다?
+
+	float pitchRad = glm::radians(GetRotate().x);
+	float yawRad = glm::radians(GetRotate().y);
+
+	glm::vec3 forward;
+	forward.x = cos(pitchRad) * sin(yawRad);
+	forward.y = sin(pitchRad);
+	forward.z = -cos(pitchRad) * cos(yawRad);
+	return glm::normalize(forward);
+}

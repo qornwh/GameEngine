@@ -17,6 +17,8 @@ void TestActor::Start()
 {
 	character_comp_ = new MeshComponent(this, "Assets/NPC_Enzo_Model/obj/obj.obj");
 	AddComponent(character_comp_);
+
+	SetPosition(glm::vec3(3, -2.f, 0));
 }
 
 void TestActor::Update(float deltaTime)
@@ -25,12 +27,29 @@ void TestActor::Update(float deltaTime)
 	Actor* dirLight = world->GetDirectionalLight();
 	if (dirLight != nullptr)
 	{
-		auto& roate = dirLight->GetRotate();
-		auto forward = dirLight->GetForward();
 		float dAngle = (deltaTime / 1000.f) * angle_;
 		
-		roate.y += dAngle;
-		if (roate.y >= 360)
-			roate.y -= 360.f;
+		cur_angle_ += dAngle;
+
+		if (cur_angle_ > 360)
+			cur_angle_ = cur_angle_ - 360;
+
+		glm::vec3 pos = dirLight->GetPosition();
+
+		pos.x = glm::sqrt(2) * glm::sin(cur_angle_);
+		pos.z = glm::sqrt(2) * glm::cos(cur_angle_);
+
+		dirLight->SetPosition(pos);
 	}
+
+	Actor::Update(deltaTime);
+}
+
+void FloorActor::Start()
+{
+	floor_comp_ = new MeshComponent(this, "Assets/base/Cube.obj");
+	AddComponent(floor_comp_);
+
+	SetPosition(glm::vec3(0.f, -2.f, 0.f));
+	SetScale(glm::vec3(5.f, 0.1f, 5.f));
 }
