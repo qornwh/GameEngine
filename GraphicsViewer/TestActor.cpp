@@ -39,7 +39,16 @@ void TestActor::Update(float deltaTime)
 		pos.x = glm::sqrt(2) * glm::sin(cur_angle_);
 		pos.z = glm::sqrt(2) * glm::cos(cur_angle_);
 
+		glm::vec3 direction = glm::normalize(pos - glm::vec3(0));
+		glm::vec3 sourceDir = glm::vec3(0.0f, 0.0f, 1.0f);
+
+		glm::quat rotationQuat = glm::rotation(sourceDir, direction);
+
+		glm::vec3 eulerAngles = glm::eulerAngles(rotationQuat);
+		glm::vec3 eulerAnglesDegree = glm::degrees(eulerAngles);
+
 		dirLight->SetPosition(pos);
+		dirLight->SetRotate(eulerAnglesDegree);
 	}
 
 	Actor::Update(deltaTime);

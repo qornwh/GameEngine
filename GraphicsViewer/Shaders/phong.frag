@@ -44,7 +44,7 @@ float ShadowCalculation()
 	float currentDepth = projectionCoordinates.z;
 	
 	vec3 normal = normalize(fragNormal);
-	vec3 lightDir = normalize(uDirectLight.position - fragWorldPosition);
+	vec3 lightDir = normalize(-uDirectLight.direction);
 	float bias = max(0.02 * (1.0 - dot(normal, lightDir)), 0.005);
 
 	float shadow = currentDepth - bias > closestDepth  ? 1.0 : 0.0;  
@@ -57,7 +57,7 @@ void main()
 	// 물체 표면 벡터
 	vec3 normal = normalize(fragNormal);
 	// 빛 방향 벡터(반대)
-	vec3 lightDir = normalize(uDirectLight.position - fragWorldPosition);
+	vec3 lightDir = normalize(-uDirectLight.direction);
 	// 보이는 방향 
 	vec3 viewDir = normalize(uCameraPosition - fragWorldPosition);
 	// 빛 반사 방향

@@ -43,7 +43,7 @@ void TestGameWorld::Start()
 
 	imgui_actor_ptr_ = std::make_shared<ImGuiActor>();
 	imgui_actor_ptr_->SetActor(camera);
-	imgui_actor_ptr_->SetActor2(directionalLight);
+	imgui_actor_ptr_->SetActor2(actor);
 }
 
 void TestGameWorld::AfterUpdate()
