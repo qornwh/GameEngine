@@ -83,6 +83,12 @@
     <ClInclude Include="ActorFactory.h">
       <Filter>Uilts</Filter>
     </ClInclude>
+    <ClInclude Include="MouseInput.h">
+      <Filter>Engine\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyBoardInput.h">
+      <Filter>Engine\Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -185,6 +191,12 @@
     <ClCompile Include="ActorFactory.cpp">
       <Filter>Uilts</Filter>
     </ClCompile>
+    <ClCompile Include="MouseInput.cpp">
+      <Filter>Engine\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyBoardInput.cpp">
+      <Filter>Engine\Input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
@@ -231,6 +243,9 @@
     </Filter>
     <Filter Include="CharaterViewer">
       <UniqueIdentifier>{df685c9e-b7ac-4c6c-8c19-81740714e943}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Input">
+      <UniqueIdentifier>{1ff2e0a6-1969-46dd-a8fc-004069be70ec}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

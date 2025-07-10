@@ -8,6 +8,48 @@
 #include <imgui/imgui_impl_glfw.h>
 #include <imgui/imgui_impl_opengl3.h>
 
+#include "MouseInput.h"
+#include "KeyBoardInput.h"
+
+void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+    if (key == GLFW_KEY_UNKNOWN) return;
+
+    if (action == GLFW_PRESS)
+    {
+        KeyBoardInput::GetInstance().SetKey(key, true);
+    }
+    else if (action == GLFW_RELEASE)
+    {
+        KeyBoardInput::GetInstance().SetKey(key, false);
+    }
+}
+
+void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
+{
+    int state = (action == GLFW_PRESS) ? (int)MouseState::DOWN : (int)MouseState::DOWN;
+    if (button == GLFW_MOUSE_BUTTON_LEFT)
+    {
+        MouseInput::GetInstance().SetLeft(state);
+    }
+    else
+    {
+        MouseInput::GetInstance().SetRight(state);
+    }
+}
+
+void cursorPosCallback(GLFWwindow* window, double xpos, double ypos)
+{
+    MouseInput::GetInstance().SetX(xpos);
+    MouseInput::GetInstance().SetY(ypos);
+}
+
+void scrollCallback(GLFWwindow* window, double xoffset, double yoffset)
+{
+    MouseInput::GetInstance().SetScrollX(xoffset);
+    MouseInput::GetInstance().SetScrollY(yoffset);
+}
+
 GameEngine::GameEngine() : world_(nullptr), window_(nullptr)
 {
 }
@@ -68,6 +110,12 @@ void GameEngine::Init()
     ImGui_ImplGlfw_InitForOpenGL(window_, true);
     ImGui_ImplOpenGL3_Init("#version 330");
 
+    // 콜백 등록
+    glfwSetKeyCallback(window_, keyCallback);
+    glfwSetMouseButtonCallback(window_, mouseButtonCallback);
+    glfwSetCursorPosCallback(window_, cursorPosCallback);
+    glfwSetScrollCallback(window_, scrollCallback);
+
     OpenWorld();
 }
 
@@ -87,6 +135,8 @@ void GameEngine::Loop()
 
     while (!glfwWindowShouldClose(window_))
     {
+        glfwPollEvents();
+
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -102,6 +152,5 @@ void GameEngine::Loop()
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
         glfwSwapBuffers(window_);
-        glfwPollEvents();
     }
 }

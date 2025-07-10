@@ -5,6 +5,11 @@
 struct GLFWwindow;
 class GameWorld;
 
+void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
+void cursorPosCallback(GLFWwindow* window, double xpos, double ypos);
+void scrollCallback(GLFWwindow* window, double xoffset, double yoffset);
+
 class GameEngine : public Singleton<GameEngine>
 {
 public:
