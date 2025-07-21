@@ -12,7 +12,13 @@
 #include "KeyBoardInput.h"
 
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
-{
+{    
+    // Let ImGui process the event first
+    ImGui_ImplGlfw_KeyCallback(window, key, scancode, action, mods);
+    ImGuiIO& io = ImGui::GetIO();
+    if (io.WantCaptureKeyboard)
+        return; // don't process further if ImGui wants it
+
     if (key == GLFW_KEY_UNKNOWN) return;
 
     if (action == GLFW_PRESS)
@@ -26,7 +32,13 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
 }
 
 void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
-{
+{  
+    // Forward to ImGui
+    ImGui_ImplGlfw_MouseButtonCallback(window, button, action, mods);
+    ImGuiIO& io = ImGui::GetIO();
+    if (io.WantCaptureMouse)
+        return;
+
     int state = (action == GLFW_PRESS) ? (int)MouseState::DOWN : (int)MouseState::DOWN;
     if (button == GLFW_MOUSE_BUTTON_LEFT)
     {
@@ -40,12 +52,22 @@ void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
 
 void cursorPosCallback(GLFWwindow* window, double xpos, double ypos)
 {
+    ImGui_ImplGlfw_CursorPosCallback(window, xpos, ypos);
+    ImGuiIO& io = ImGui::GetIO();
+    if (io.WantCaptureMouse)
+        return;
+
     MouseInput::GetInstance().SetX(xpos);
     MouseInput::GetInstance().SetY(ypos);
 }
 
 void scrollCallback(GLFWwindow* window, double xoffset, double yoffset)
 {
+    ImGui_ImplGlfw_ScrollCallback(window, xoffset, yoffset);
+    ImGuiIO& io = ImGui::GetIO();
+    if (io.WantCaptureMouse)
+        return;
+
     MouseInput::GetInstance().SetScrollX(xoffset);
     MouseInput::GetInstance().SetScrollY(yoffset);
 }

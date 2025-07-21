@@ -17,11 +17,12 @@ public:
 	void SetPerspective(bool value) { is_perspective_ = value; };
 	bool IsProjection() { return is_perspective_; }
 
-	glm::mat4 GetView();
-
 	void SetActive();
 
+	glm::mat4 GetView();
 	glm::vec3 GetForward() override;
+
+	void Update(float deltaTime) override;
 
 private:
 	// 카메라 
@@ -32,5 +33,10 @@ private:
 	// 포지션에서 타겟까지 거리 => 카메라 암
 	float distance_;
 	bool is_perspective_;
+	
+	bool isFirst = false;
+	float last_pos_x_ = 0;
+	float last_pos_y_ = 0;
+	float sensitivity_ = 0.1f;
 };
 

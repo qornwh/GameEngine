@@ -25,9 +25,12 @@ void Mesh::Draw(Shader& shader)
         auto& texture = textures_[i];
         texture.SetActive(shader);
     }
-    vao_.SetActive();
 
-    glDrawElements(GL_TRIANGLES, vao_.GetIndexCount(), GL_UNSIGNED_INT, nullptr);
+    if (vao_.GetIndexCount() > 0)
+    {
+        vao_.SetActive();
+        glDrawElements(GL_TRIANGLES, vao_.GetIndexCount(), GL_UNSIGNED_INT, nullptr);
+    }
 }
 
 void Mesh::SetActive()
