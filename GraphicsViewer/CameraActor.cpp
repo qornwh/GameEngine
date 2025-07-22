@@ -60,8 +60,8 @@ void CameraActor::Update(float deltaTime)
 		return;
 	}
 
-	float offsetX = (last_pos_x_ - x) * sensitivity_;
-	float offsetY = (y - last_pos_y_)* sensitivity_;
+	float offsetX = (x - last_pos_x_) * sensitivity_;
+	float offsetY = (last_pos_y_ - y) * sensitivity_;
 
 	last_pos_x_ = x;
 	last_pos_y_ = y;

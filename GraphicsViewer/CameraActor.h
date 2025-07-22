@@ -37,6 +37,6 @@ private:
 	bool isFirst = false;
 	float last_pos_x_ = 0;
 	float last_pos_y_ = 0;
-	float sensitivity_ = 0.1f;
+	float sensitivity_ = 0.05f;
 };
 

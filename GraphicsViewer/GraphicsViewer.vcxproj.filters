@@ -89,6 +89,9 @@
     <ClInclude Include="KeyBoardInput.h">
       <Filter>Engine\Input</Filter>
     </ClInclude>
+    <ClInclude Include="MovementComponent.h">
+      <Filter>Game\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -197,6 +200,9 @@
     <ClCompile Include="KeyBoardInput.cpp">
       <Filter>Engine\Input</Filter>
     </ClCompile>
+    <ClCompile Include="MovementComponent.cpp">
+      <Filter>Game\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
@@ -237,9 +243,6 @@
     </Filter>
     <Filter Include="Game\Light">
       <UniqueIdentifier>{88a86c24-f7ec-4bdb-a293-d365686cd8cd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Test2">
-      <UniqueIdentifier>{364f99a2-6918-4123-99e8-b805cc1f762e}</UniqueIdentifier>
     </Filter>
     <Filter Include="CharaterViewer">
       <UniqueIdentifier>{df685c9e-b7ac-4c6c-8c19-81740714e943}</UniqueIdentifier>

@@ -167,6 +167,7 @@ xcopy "$(ProjectDir)\..\lib\Assimp\$(Configuration)\*.dll" "$(OutDir)" /i /s /y<
     <ClInclude Include="MeshComponent.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="MouseInput.h" />
+    <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="PointLight.h" />
     <ClInclude Include="project.md" />
     <ClInclude Include="Renderer.h" />
@@ -206,6 +207,7 @@ xcopy "$(ProjectDir)\..\lib\Assimp\$(Configuration)\*.dll" "$(OutDir)" /i /s /y<
     <ClCompile Include="MeshComponent.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="MouseInput.cpp" />
+    <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Shader.cpp" />
