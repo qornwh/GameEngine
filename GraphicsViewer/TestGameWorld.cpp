@@ -9,6 +9,7 @@
 #include "DirectionalLight.h"
 #include "CubeActor.h"
 #include <GLFW/glfw3.h>
+#include "PlayerActor.h"
 
 void TestGameWorld::Start()
 {
@@ -32,6 +33,10 @@ void TestGameWorld::Start()
 
 	CameraActor* camera = Game::AFactory()->SpawnActor<CameraActor>();
 	camera->SetPosition(glm::vec3(0.f, 0.f, 10.f));
+
+	PlayerActor* player = Game::AFactory()->SpawnActor<PlayerActor>();
+	player->SetCamera(camera);
+	player->Start();
 
 	DirectionalLightActor* directionalLight = new DirectionalLightActor();
 	directionalLight->init();

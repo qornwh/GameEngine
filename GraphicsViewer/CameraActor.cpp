@@ -49,34 +49,34 @@ glm::vec3 CameraActor::GetForward()
 
 void CameraActor::Update(float deltaTime)
 {
-	float x = MouseInput::GetInstance().GetX();
-	float y = MouseInput::GetInstance().GetY();
+	//float x = MouseInput::GetInstance().GetX();
+	//float y = MouseInput::GetInstance().GetY();
 
-	if (!isFirst)
-	{
-		last_pos_x_ = x;
-		last_pos_y_ = y;
-		isFirst = true;
-		return;
-	}
+	//if (!isFirst)
+	//{
+	//	last_pos_x_ = x;
+	//	last_pos_y_ = y;
+	//	isFirst = true;
+	//	return;
+	//}
 
-	float offsetX = (x - last_pos_x_) * sensitivity_;
-	float offsetY = (last_pos_y_ - y) * sensitivity_;
+	//float offsetX = (x - last_pos_x_) * sensitivity_;
+	//float offsetY = (last_pos_y_ - y) * sensitivity_;
 
-	last_pos_x_ = x;
-	last_pos_y_ = y;
+	//last_pos_x_ = x;
+	//last_pos_y_ = y;
 
-	float yaw = GetRotate().x;
-	float pitch = GetRotate().y;
-	float roll = GetRotate().z;
+	//float yaw = GetRotate().x;
+	//float pitch = GetRotate().y;
+	//float roll = GetRotate().z;
 
-	yaw += offsetX;
-	pitch += offsetY;
+	//yaw += offsetX;
+	//pitch += offsetY;
 
-	if (pitch > 89.f)
-		pitch = 89.f;
-	else if (pitch < -89.f)
-		pitch = -89.f;
+	//if (pitch > 89.f)
+	//	pitch = 89.f;
+	//else if (pitch < -89.f)
+	//	pitch = -89.f;
 
-	SetRotate(glm::vec3(yaw, pitch, roll));
+	//SetRotate(glm::vec3(yaw, pitch, roll));
 }
