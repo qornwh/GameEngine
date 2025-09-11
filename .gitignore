@@ -444,6 +444,9 @@ FodyWeavers.xsd
 !/lib/GLFW/*.lib
 !/lib/GLFW/*.dll
 
+# 서브 모델 추가
+!/GraphicsViewer/Assets/NPC_Enzo_Model/obj/
+
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 
