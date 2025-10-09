@@ -223,6 +223,7 @@ xcopy "$(ProjectDir)\..\lib\Assimp\$(Configuration)\*.dll" "$(OutDir)" /i /s /y<
     <ClCompile Include="GameWorld.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\README.md" />
     <None Include="Shaders\base.frag" />
     <None Include="Shaders\base.vert" />
     <None Include="Shaders\base_pbr.frag" />

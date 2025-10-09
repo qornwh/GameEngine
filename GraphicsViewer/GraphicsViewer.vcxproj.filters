@@ -276,5 +276,6 @@
     <None Include="Shaders\shadow.frag">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="..\README.md" />
   </ItemGroup>
 </Project>
