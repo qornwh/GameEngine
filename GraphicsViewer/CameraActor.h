@@ -1,10 +1,17 @@
-#pragma once
+ï»¿#pragma once
 #include "Actor.h"
+
+enum class CameraMode
+{
+	Perspective3D,
+	Ortho3D,
+	Ortho2D,
+};
 
 class CameraActor : public Actor
 {
 public:
-	CameraActor(float distance = 1.f, bool is_perspective = true);
+	CameraActor(float distance = 1.f, CameraMode mode = CameraMode::Perspective3D);
 	~CameraActor();
 
 	glm::mat4& GetPerspective() { return perspective_; }
@@ -14,8 +21,14 @@ public:
 	void SetDistacne(float distance) { distance_ = distance; }
 	float GetDistance() { return distance_; }
 
-	void SetPerspective(bool value) { is_perspective_ = value; };
-	bool IsProjection() { return is_perspective_; }
+	void SetMode(CameraMode mode) { mode_ = mode; }
+	CameraMode GetMode() const { return mode_; }
+
+	void SetPerspective(bool value) { mode_ = value ? CameraMode::Perspective3D : CameraMode::Ortho3D; }
+	bool IsProjection() { return mode_ == CameraMode::Perspective3D; }
+
+	void SetZoom(float z) { zoom_ = z; }
+	float GetZoom() const { return zoom_; }
 
 	void SetActive();
 
@@ -25,18 +38,20 @@ public:
 	void Update(float deltaTime) override;
 
 private:
-	// Ä«¸Ş¶ó 
+	// ì¹´ë©”ë¼
 	float fov_ = 20.0f;
 	glm::mat4 perspective_;
 	glm::mat4 orthographic_;
-	
-	// Æ÷Áö¼Ç¿¡¼­ Å¸°Ù±îÁö °Å¸® => Ä«¸Ş¶ó ¾Ï
+
+	// í¬ì§€ì…˜ì—ì„œ íƒ€ê²Ÿê¹Œì§€ ê±°ë¦¬ => ì¹´ë©”ë¼ ì•”
 	float distance_;
-	bool is_perspective_;
-	
+	CameraMode mode_;
+
 	bool isFirst = false;
 	float last_pos_x_ = 0;
 	float last_pos_y_ = 0;
 	float sensitivity_ = 0.05f;
-};
 
+	// 2D ëª¨ë“œ ì¤Œ ë°°ìœ¨
+	float zoom_ = 1.f;
+};

@@ -1,4 +1,4 @@
-#include "GameEngine.h"
+ï»¿#include "GameEngine.h"
 #include "TestGameWorld.h"
 #include "Actor.h"
 #include <GL/glew.h>
@@ -12,12 +12,11 @@
 #include "KeyBoardInput.h"
 
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
-{    
-    // Let ImGui process the event first
+{
     ImGui_ImplGlfw_KeyCallback(window, key, scancode, action, mods);
     ImGuiIO& io = ImGui::GetIO();
     if (io.WantCaptureKeyboard)
-        return; // don't process further if ImGui wants it
+        return;
 
     if (key == GLFW_KEY_UNKNOWN) return;
 
@@ -32,8 +31,7 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
 }
 
 void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
-{  
-    // Forward to ImGui
+{
     ImGui_ImplGlfw_MouseButtonCallback(window, button, action, mods);
     ImGuiIO& io = ImGui::GetIO();
     if (io.WantCaptureMouse)
@@ -72,6 +70,13 @@ void scrollCallback(GLFWwindow* window, double xoffset, double yoffset)
     MouseInput::GetInstance().SetScrollY(yoffset);
 }
 
+void framebufferSizeCallback(GLFWwindow* window, int width, int height)
+{
+    if (width <= 0 || height <= 0) return;
+    GameEngine::GetInstance().SetSize(width, height);
+    glViewport(0, 0, width, height);
+}
+
 GameEngine::GameEngine() : world_(nullptr), window_(nullptr)
 {
 }
@@ -92,7 +97,7 @@ GameEngine::~GameEngine()
 
 void GameEngine::Init()
 {
-    /* glfw ÃÊ±âÈ­ */
+    /* glfw ì´ˆê¸°í™” */
     if (!glfwInit())
     {
         assert(-1);
@@ -103,22 +108,25 @@ void GameEngine::Init()
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_DEPTH_BITS, 24);
 
-    /* À©µµ¿ì »ý¼º */
-    window_ = glfwCreateWindow(1024, 720, "Graphics Viewer", NULL, NULL);
+    /* ìœˆë„ìš° ìƒì„± */
+    window_ = glfwCreateWindow(DefaultWindowWidth, DefaultWindowHeight, "Graphics Viewer", NULL, NULL);
     if (!window_)
     {
         glfwTerminate();
         assert(-1);
     }
 
-    // ´õºí ¹öÆÛ¸µ È°¼ºÈ­
+    width_ = DefaultWindowWidth;
+    height_ = DefaultWindowHeight;
+
+    // ë”ë¸” ë²„í¼ë§ í™œì„±í™”
     //glfwSetWindowAttrib(window_, GLFW_DOUBLEBUFFER, GLFW_TRUE);
-    /* ÇöÀç À©µµ¿ì¸¦ ÄÁÅØ½º·Î ¼³Á¤ */
+    /* í˜„ìž¬ ìœˆë„ìš°ë¥¼ ì»¨í…ìŠ¤ë¡œ ì„¤ì • */
     glfwMakeContextCurrent(window_);
 
     glEnable(GL_DEPTH_TEST);
 
-    /* glew ÃÊ±âÈ­ */
+    /* glew ì´ˆê¸°í™” */
     auto err = glewInit();
     if (err != GLEW_OK)
     {
@@ -132,11 +140,21 @@ void GameEngine::Init()
     ImGui_ImplGlfw_InitForOpenGL(window_, true);
     ImGui_ImplOpenGL3_Init("#version 330");
 
-    // ÄÝ¹é µî·Ï
+    // ì½œë°± ë“±ë¡
     glfwSetKeyCallback(window_, keyCallback);
     glfwSetMouseButtonCallback(window_, mouseButtonCallback);
     glfwSetCursorPosCallback(window_, cursorPosCallback);
     glfwSetScrollCallback(window_, scrollCallback);
+    glfwSetFramebufferSizeCallback(window_, framebufferSizeCallback);
+
+    int fbW = 0, fbH = 0;
+    glfwGetFramebufferSize(window_, &fbW, &fbH);
+    if (fbW > 0 && fbH > 0)
+    {
+        width_ = fbW;
+        height_ = fbH;
+        glViewport(0, 0, fbW, fbH);
+    }
 
     OpenWorld();
 }
@@ -162,7 +180,7 @@ void GameEngine::Loop()
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // Imgui ÇÁ·¹ÀÓ ½ÃÀÛ
+        // Imgui í”„ë ˆìž„ ì‹œìž‘
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
