@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "Actor.h"
 #include <vector>
 
@@ -25,12 +25,12 @@ struct PointLight
 	glm::vec3 diffuse;
 	glm::vec3 specular;
 
-	// »ó¼öÇ×, ¼±Çü, ÀÌÂ÷
+	// ìƒìˆ˜í•­, ì„ í˜•, ì´ì°¨
 	float constant;
 	float linear;
 	float quadratic;
 
-	// ±âº» ¼¼±â
+	// ê¸°ë³¸ ì„¸ê¸°
 	float ambientStrength;
 	float specularPow;
 	float specularStrength;

@@ -1,31 +1,31 @@
-#include "VertexArray.h"
+ï»¿#include "VertexArray.h"
 
 VertexArray::VertexArray(const std::vector<Vertex>& vertices, unsigned int vertexCount, const unsigned int* index, unsigned int indexCount) : vertex_count_(vertexCount), index_count_(indexCount)
 {
-	// ¹öÅØ½º ¹è¿­ °´Ã¼ »ı¼º
+	// ë²„í…ìŠ¤ ë°°ì—´ ê°ì²´ ìƒì„±
 	glGenVertexArrays(1, &vertex_array_);
-	// ÇöÀç ¹öÅØ½º È°¼ºÈ­
+	// í˜„ì¬ ë²„í…ìŠ¤ í™œì„±í™”
 	glBindVertexArray(vertex_array_);
 
-	// ¹öÅØ½º ¹öÆÛ »ı¼º
+	// ë²„í…ìŠ¤ ë²„í¼ ìƒì„±
 	glGenBuffers(1, &vertex_buffer_);
-	// ¹öÅØ½º ¹öÆÛ È°¼ºÈ­
+	// ë²„í…ìŠ¤ ë²„í¼ í™œì„±í™”
 	glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer_);
-	// È°¼ºÈ­µÈ ¹öÆÛ¿¡ vertex¼ÂÆÃ
+	// í™œì„±í™”ëœ ë²„í¼ì— vertexì…‹íŒ…
 	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * vertex_count_, &vertices[0], GL_STATIC_DRAW);
 
-	// ÀÎµ¥½º ¹öÆÛ »ı¼º
+	// ì¸ë°ìŠ¤ ë²„í¼ ìƒì„±
 	glGenBuffers(1, &index_buffer_);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, index_buffer_);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * index_count_, index, GL_STATIC_DRAW);
 
-	// À§Ä¡
+	// ìœ„ì¹˜
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(offsetof(Vertex, position)));
-	// ³ë¸Ö
+	// ë…¸ë©€
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(offsetof(Vertex, normal)));
-	// ÅØ½ºÃ³
+	// í…ìŠ¤ì²˜
 	glEnableVertexAttribArray(2);
 	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(offsetof(Vertex, tex_coord)));
 }
@@ -41,7 +41,7 @@ void VertexArray::SetActive()
 
 void VertexArray::Released()
 {
-	// ÀÏ´Ü »ı°¢ÇØº¸±â
+	// ì¼ë‹¨ ìƒê°í•´ë³´ê¸°
 	glDeleteBuffers(1, &vertex_buffer_);
 	glDeleteBuffers(1, &index_buffer_);
 	glDeleteVertexArrays(1, &vertex_array_);

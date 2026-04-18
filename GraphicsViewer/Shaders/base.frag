@@ -1,12 +1,12 @@
-#version 330 core
+ï»¿#version 330 core
 
 // uv
 in vec2 fragTexCoord;
 
-// ÄÃ·¯ ¹öÆÛ¿¡ »öÃâ·Â
+// ì»¬ëŸ¬ ë²„í¼ì— ìƒ‰ì¶œë ¥
 out vec4 outColor;
 
-// ÅØ½ºÃÄ
+// í…ìŠ¤ì³
 uniform sampler2D uTexture;
 
 void main() 

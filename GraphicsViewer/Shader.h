@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <string>
 #include <GL/glew.h>
 #include <glm/glm.hpp>
@@ -9,11 +9,11 @@ public:
 	Shader();
 	~Shader();
 
-	// ¹öÅØ½º / ÇÁ·¡±×¸ÕÆ® ½¦ÀÌ´õ ·Îµå 
+	// ë²„í…ìŠ¤ / í”„ë˜ê·¸ë¨¼íŠ¸ ì‰ì´ë” ë¡œë“œ 
 	bool Load(const char* vertexName, const char* fragmentName);
-	// ½¦ÀÌ´õ ¾ğ·Îµå
+	// ì‰ì´ë” ì–¸ë¡œë“œ
 	void unLoad();
-	// ½¦ÀÌ´õ È°¼ºÈ­
+	// ì‰ì´ë” í™œì„±í™”
 	void SetActive();
 
 	void SetUniformInt(const char* name, int value);
@@ -24,11 +24,11 @@ public:
 	void SetUniformMat4(const char* name, const glm::mat4& value);
 
 private:
-	// ½¦ÀÌ´õ ÄÄÆÄÀÏ
+	// ì‰ì´ë” ì»´íŒŒì¼
 	bool CompileShader(const char* fileName, GLenum shaderType, GLenum& shader);
-	// ½¦ÀÌ´õ ÄÄÆÄÀÏ ¼º°ø¿©ºÎ
+	// ì‰ì´ë” ì»´íŒŒì¼ ì„±ê³µì—¬ë¶€
 	bool IsCompiled(GLenum shader);
-	// ½¦ÀÌ´õ ÇÁ·Î±×·¥ ¸µÅ© ¼º°ø¿©ºÎ
+	// ì‰ì´ë” í”„ë¡œê·¸ë¨ ë§í¬ ì„±ê³µì—¬ë¶€
 	bool IsLinked();
 
 	GLenum vertex_shader_;

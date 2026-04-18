@@ -1,4 +1,4 @@
-#include "ShadowFBO.h"
+Ôªø#include "ShadowFBO.h"
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
@@ -13,20 +13,20 @@ ShadowFBO::~ShadowFBO()
 
 void ShadowFBO::Init()
 {
-	// πˆ∆€ ª˝º∫
+	// Î≤ÑÌçº ÏÉùÏÑ±
 	glGenFramebuffers(1, &frameBuffer_);
-	// ≈ÿΩ∫√≥ ª˝º∫
+	// ÌÖçÏä§Ï≤ò ÏÉùÏÑ±
 	glGenTextures(1, &texture_);
 	glBindTexture(GL_TEXTURE_2D, texture_);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, SHADOW_WIDTH, SHADOW_HEIGHT, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); // √÷±Ÿ¡¢¿∏∑Œ ªÁøÎ
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); // ÏµúÍ∑ºÏ†ëÏúºÎ°ú ÏÇ¨Ïö©
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER); // π¸¿ß π€¿∫border ƒ√∑Ø∑Œ √§øÚ
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER); // Î≤îÏúÑ Î∞ñÏùÄborder Ïª¨Îü¨Î°ú Ï±ÑÏõÄ
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
 	float borderColor[] = { 1.0, 1.0, 1.0, 1.0 };
 	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);
 
-	// «¡∑π¿”πˆ∆€ ≈ÿΩ∫√≥ ø¨∞·
+	// ÌîÑÎ†àÏûÑÎ≤ÑÌçº ÌÖçÏä§Ï≤ò Ïó∞Í≤∞
 	glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer_);
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, texture_, 0);
 	glDrawBuffer(GL_NONE);
@@ -43,5 +43,5 @@ void ShadowFBO::SetActive()
 {
 	glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
 	glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer_);
-	glClear(GL_DEPTH_BUFFER_BIT); // ±Ì¿Ã πˆ∆€ ¡¶∞≈
+	glClear(GL_DEPTH_BUFFER_BIT); // ÍπäÏù¥ Î≤ÑÌçº Ï†úÍ±∞
 }

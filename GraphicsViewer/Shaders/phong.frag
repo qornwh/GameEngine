@@ -1,22 +1,22 @@
-#version 330 core
+ï»¿#version 330 core
 
 in vec2 fragTexCoord;
 in vec3 fragWorldPosition;
 in vec3 fragNormal;
 in vec4 fragLightSpacePosition;
 
-// ÅØ½ºÃÄ
+// í…ìŠ¤ì³
 uniform sampler2D uDiffuse;
-// ±×¸²ÀÚ
+// ê·¸ë¦¼ì
 uniform sampler2D uShadow;
 
-// ÄÃ·¯ ¹öÆÛ¿¡ »öÃâ·Â
+// ì»¬ëŸ¬ ë²„í¼ì— ìƒ‰ì¶œë ¥
 out vec4 outColor;
 
-// µğ·º¼Å³Î ¶óÀÌÆ®
+// ë””ë ‰ì…”ë„ ë¼ì´íŠ¸
 struct DirectionalLight
 {
-	// ¹æÇâ±¤
+	// ë°©í–¥ê´‘
 	vec3 direction;
 	vec3 position;
 
@@ -24,7 +24,7 @@ struct DirectionalLight
 	vec3 diffuse;
 	vec3 specular;
 
-	// ±âº» ¼¼±â
+	// ê¸°ë³¸ ì„¸ê¸°
 	float ambientStrength;
 	float specularPow;
 	float specularStrength;
@@ -54,13 +54,13 @@ float ShadowCalculation()
 
 void main() 
 {
-	// ¹°Ã¼ Ç¥¸é º¤ÅÍ
+	// ë¬¼ì²´ í‘œë©´ ë²¡í„°
 	vec3 normal = normalize(fragNormal);
-	// ºû ¹æÇâ º¤ÅÍ(¹İ´ë)
+	// ë¹› ë°©í–¥ ë²¡í„°(ë°˜ëŒ€)
 	vec3 lightDir = normalize(-uDirectLight.direction);
-	// º¸ÀÌ´Â ¹æÇâ 
+	// ë³´ì´ëŠ” ë°©í–¥ 
 	vec3 viewDir = normalize(uCameraPosition - fragWorldPosition);
-	// ºû ¹İ»ç ¹æÇâ
+	// ë¹› ë°˜ì‚¬ ë°©í–¥
 	vec3 reflectDir = normalize(reflect(-uDirectLight.position, normal));
 
 	// phong
@@ -80,17 +80,17 @@ void main()
 
 /*
 
-// Æ÷ÀÎÆ® ¶óÀÌÆ®
+// í¬ì¸íŠ¸ ë¼ì´íŠ¸
 struct PointLight
 {
-	// À§Ä¡
+	// ìœ„ì¹˜
 	vec3 position;
 
 	vec3 ambient;
 	vec3 diffuse;
 	vec3 specular;
 
-	// »ó¼öÇ×, ¼±Çü, ÀÌÂ÷
+	// ìƒìˆ˜í•­, ì„ í˜•, ì´ì°¨
 	float constant;
 	float linear;
 	float quadratic;
@@ -101,16 +101,16 @@ uniform vec3 uCameraPosition;
 
 void main() 
 {
-	// ¹°Ã¼ Ç¥¸é º¤ÅÍ
+	// ë¬¼ì²´ í‘œë©´ ë²¡í„°
 	vec3 normal = normalize(fragNormal);
-	// ºû ¹æÇâ º¤ÅÍ(¹İ´ë)
+	// ë¹› ë°©í–¥ ë²¡í„°(ë°˜ëŒ€)
 	vec3 lightDir = normalize(uLight.position - fragWorldPosition);
-	// º¸ÀÌ´Â ¹æÇâ 
+	// ë³´ì´ëŠ” ë°©í–¥ 
 	vec3 viewDir = normalize(uCameraPosition - fragWorldPosition);
-	// ºû ¹İ»ç ¹æÇâ
+	// ë¹› ë°˜ì‚¬ ë°©í–¥
 	vec3 reflectDir = normalize(reflect(-lightDir, normal));
 	
-	// °¨¼â Àû¿ë
+	// ê°ì‡„ ì ìš©
 	float distance = length(uLight.position - fragWorldPosition);
 	float attenuation = 1.0 / (uLight.constant + uLight.linear * distance + uLight.quadratic * (distance * distance));    
 

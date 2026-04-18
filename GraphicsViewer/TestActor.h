@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "Actor.h"
 
 class MeshComponent;
@@ -15,7 +15,7 @@ public:
 private:
 	MeshComponent* character_comp_;
 
-	// µî¼Ó ¿ø¿îµ¿ 1ÃÊ¿¡ 90
+	// ë“±ì† ì›ìš´ë™ 1ì´ˆì— 90
 	float angle_ = 1.f;
 	float cur_angle_ = 0;
 };

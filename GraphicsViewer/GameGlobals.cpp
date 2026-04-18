@@ -1,4 +1,4 @@
-#include "GameGlobals.h"
+ï»¿#include "GameGlobals.h"
 #include "GameEngine.h"
 #include "GameWorld.h"
 #include "ActorFactory.h"
@@ -15,7 +15,7 @@ GameWorld* Game::World()
 
 ActorFactory* Game::AFactory()
 {
-	// TODO: ¿©±â¿¡ return ¹®À» »ðÀÔÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— return ë¬¸ì„ ì‚½ìž…í•©ë‹ˆë‹¤.
 	return GameEngine::GetInstance().GetWorld()->GetActorFactory();
 }
 

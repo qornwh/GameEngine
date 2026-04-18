@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "Actor.h"
 
 class MeshComponent;
@@ -6,7 +6,7 @@ class MeshComponent;
 class CubeActor : public Actor
 {
 public:
-	// Å¥ºê ¸Ş½Ã
+	// íë¸Œ ë©”ì‹œ
 	CubeActor();
 	~CubeActor();
 private:

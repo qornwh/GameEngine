@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "Component.h"
 #include <glm/glm.hpp>
 
@@ -12,9 +12,9 @@ public:
     void Input(glm::vec3& dir);
 
 private:
-    glm::vec3 velocity_;     // ÇöÀç ¼Óµµ
-    glm::vec3 direction_;    // ÇöÀç ÀÔ·Â ¹æÇâ
-    float acceleration_;     // ÃÊ´ç °¡¼Óµµ
-    float maxSpeed_;         // ÇöÀç Àû¿ëµÇ´Â ÃÖ´ë¼Óµµ
+    glm::vec3 velocity_;     // í˜„ì¬ ì†ë„
+    glm::vec3 direction_;    // í˜„ì¬ ì…ë ¥ ë°©í–¥
+    float acceleration_;     // ì´ˆë‹¹ ê°€ì†ë„
+    float maxSpeed_;         // í˜„ì¬ ì ìš©ë˜ëŠ” ìµœëŒ€ì†ë„
 };
 

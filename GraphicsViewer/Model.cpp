@@ -1,4 +1,4 @@
-#include "Model.h"
+ï»¿#include "Model.h"
 #include "Mesh.h"
 #include "Texture.h"
 #include "Shader.h"
@@ -19,7 +19,7 @@ void Model::Load(const std::string& fileName)
 	auto flag = aiProcess_CalcTangentSpace |
 		aiProcess_Triangulate |
 		aiProcess_GenSmoothNormals;
-	// ÁÂÇ¥ (0,0) ÁÂÇ¥°¡ ¿ŞÂÊ ¾Æ·¡ / (0,0)ÀÌ ¿ŞÂÊ À§ °¢ ´Ù¸§
+	// ì¢Œí‘œ (0,0) ì¢Œí‘œê°€ ì™¼ìª½ ì•„ë˜ / (0,0)ì´ ì™¼ìª½ ìœ„ ê° ë‹¤ë¦„
 	//auto flag = aiProcess_CalcTangentSpace |
 	//	aiProcess_Triangulate |
 	//	aiProcess_GenSmoothNormals |

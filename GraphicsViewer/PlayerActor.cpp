@@ -1,4 +1,4 @@
-#include "PlayerActor.h"
+ï»¿#include "PlayerActor.h"
 #include "MovementComponent.h"
 #include "CameraActor.h"
 #include "KeyBoardInput.h"
@@ -26,11 +26,11 @@ void PlayerActor::Update(float deltaTime)
 		//glm::vec3 forward = GetForward();
 		glm::vec3 inputDir(0.0f);
 
-		// ±âÁØÀº Ä«¸Ş¶ó ¹æÇâ
+		// ê¸°ì¤€ì€ ì¹´ë©”ë¼ ë°©í–¥
 		glm::vec3 camForward = glm::normalize(glm::vec3(camera_->GetForward().x, camera_->GetForward().y, camera_->GetForward().z));
-		glm::vec3 camRight = -glm::normalize(glm::cross(glm::vec3(0.0f, 1.0f, 0.0f), camForward)); // ¿À¸¥ÂÊ º¤ÅÍ
+		glm::vec3 camRight = -glm::normalize(glm::cross(glm::vec3(0.0f, 1.0f, 0.0f), camForward)); // ì˜¤ë¥¸ìª½ ë²¡í„°
 
-		// Å°º¸µå ÀÔ·Â ¡æ ÀÔ·Â º¤ÅÍ ´©Àû
+		// í‚¤ë³´ë“œ ì…ë ¥ â†’ ì…ë ¥ ë²¡í„° ëˆ„ì 
 		if (KeyBoardInput::GetInstance().GetKey(GLFW_KEY_W))
 			inputDir += camForward;
 		if (KeyBoardInput::GetInstance().GetKey(GLFW_KEY_S))

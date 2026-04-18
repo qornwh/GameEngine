@@ -1,4 +1,4 @@
-#include "Shader.h"
+ï»¿#include "Shader.h"
 #include <fstream>
 #include <sstream>
 #include <iostream>
@@ -42,7 +42,7 @@ void Shader::unLoad()
 
 void Shader::SetActive()
 {
-    // ·»´õ¸µ ÆÄÀÌÇÁ¶óÀÎ ½ÇÇàÀü »ç¿ëÇÒ ½¦ÀÌ´õ ÇÁ·Î±×·¥ ¼±ÅÃ
+    // ë Œë”ë§ íŒŒì´í”„ë¼ì¸ ì‹¤í–‰ì „ ì‚¬ìš©í•  ì‰ì´ë” í”„ë¡œê·¸ë¨ ì„ íƒ
     glUseProgram(shader_program_);
 }
 
@@ -92,11 +92,11 @@ bool Shader::CompileShader(const char* fileName, GLenum shaderType, GLenum& shad
         std::string contentsStr = sstream.str();
         const char* contentsChar = contentsStr.c_str();
 
-        // ½¦ÀÌ´õ¸¦ »ı¼ºÇÑ´Ù.
+        // ì‰ì´ë”ë¥¼ ìƒì„±í•œë‹¤.
         shader = glCreateShader(shaderType);
-        // ½¦ÀÌ´õ¿¡ ½¦ÀÌ´õ ÄÚµå¸¦ µî·Ï
+        // ì‰ì´ë”ì— ì‰ì´ë” ì½”ë“œë¥¼ ë“±ë¡
         glShaderSource(shader, 1, &contentsChar, nullptr);
-        // ½¦ÀÌ´õ ÄÄÆÄÀÏ
+        // ì‰ì´ë” ì»´íŒŒì¼
         glCompileShader(shader);
 
         return IsCompiled(shader);
@@ -110,7 +110,7 @@ bool Shader::CompileShader(const char* fileName, GLenum shaderType, GLenum& shad
 
 bool Shader::IsCompiled(GLenum shader)
 {
-    // ÄÄÆÄÀÏ Á¤»óÀûÀÎ ¿Ï·á Ã¼Å©
+    // ì»´íŒŒì¼ ì •ìƒì ì¸ ì™„ë£Œ ì²´í¬
     GLint status;
     glGetShaderiv(shader, GL_COMPILE_STATUS, &status);
 

@@ -1,4 +1,4 @@
-#version 330 core
+ï»¿#version 330 core
 
 in vec2 fragTexCoord;
 in vec3 fragWorldPosition;
@@ -23,17 +23,17 @@ struct Material
 
 uniform Material uMaterial;
 
-// µğ·º¼Å³Î ¶óÀÌÆ®
+// ë””ë ‰ì…”ë„ ë¼ì´íŠ¸
 struct DirectionalLight
 {
-	// ¹æÇâ±¤
+	// ë°©í–¥ê´‘
 	vec3 direction;
 
 	vec3 ambient;
 	vec3 diffuse;
 	vec3 specular;
 
-	// ±âº» ¼¼±â
+	// ê¸°ë³¸ ì„¸ê¸°
 	float ambientStrength;
 	float specularPow;
 	float specularStrength;

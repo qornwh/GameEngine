@@ -1,16 +1,16 @@
-#pragma once
+Ôªø#pragma once
 #include "Actor.h"
 
 struct DirectionalLight
 {
-	// πÊ«‚±§
+	// Î∞©Ìñ•Í¥ë
 	glm::vec3 direction;
 
 	glm::vec3 ambient;
 	glm::vec3 diffuse;
 	glm::vec3 specular;
 
-	// ±‚∫ª ºº±‚
+	// Í∏∞Î≥∏ ÏÑ∏Í∏∞
 	float ambientStrength;
 	float specularPow;
 	float specularStrength;

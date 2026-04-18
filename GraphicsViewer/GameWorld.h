@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <vector>
 #include <unordered_map>
 #include <memory>
@@ -50,6 +50,6 @@ private:
 	Actor* root_actor_;
 	ActorFactory* actor_factory_;
 
-	// �ߺ� �޽� �ε� �ּ�ȭ (�߰��� �ؽ�ó ���Ƴ���� ���� ���� ���̴�. �׷� ��� �׳� �ٸ� model�� �߰��Ѵ�.)
+	// 중복 메시 로딩 최소화 (중간에 텍스처 갈아끼우는 경우는 없을 것이다. 그럴 경우 그냥 다른 model을 추가한다.)
 	std::unordered_map<std::string, ModelPtr> models_;
 };

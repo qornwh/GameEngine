@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "Actor.h"
 
 struct Spotlight
@@ -10,7 +10,7 @@ struct Spotlight
 	glm::vec3 diffuse;
 	glm::vec3 specular;
 
-	// ÄÚ½ÎÀÎ°ª -> ¼º´É»ó ³» ¬°á°ú¸¸ ºñ±³
+	// ì½”ì‹¸ì¸ê°’ -> ì„±ëŠ¥ìƒ ë‚´ì ¹ê²°ê³¼ë§Œ ë¹„êµ
 	float cutOff;
 };
 

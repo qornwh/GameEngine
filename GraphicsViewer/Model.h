@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <string>
 #include <vector>
 #include <assimp/Importer.hpp>
@@ -16,7 +16,7 @@ namespace NAssimpTexture
 	static std::vector<aiTextureType>& GetAssimpTextureList();
 }
 
-// ÀÏ´Ü ¸ğµ¨¸¸ ½º¸¶Æ® Æ÷ÀÎÅÍ »ç¿ëÇÔ.
+// ì¼ë‹¨ ëª¨ë¸ë§Œ ìŠ¤ë§ˆíŠ¸ í¬ì¸í„° ì‚¬ìš©í•¨.
 class Model : public std::enable_shared_from_this<Model>
 {
 public:

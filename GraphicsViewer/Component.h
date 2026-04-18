@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 class Actor;
 
@@ -8,11 +8,11 @@ public:
 	Component(Actor* actor, int order = 0);
 	~Component();
 
-	// ÇÁ·¹ÀÓ ¾÷µ¥ÀÌÆ®
+	// í”„ë ˆì„ ì—…ë°ì´íŠ¸
 	virtual void Update(float deltaTime) {};
-	// ¾×ÅÍÀÇ ¿ùµå ÁÂÇ¥ º¯°æ½Ã ¾÷µ¥ÀÌÆ®
+	// ì•¡í„°ì˜ ì›”ë“œ ì¢Œí‘œ ë³€ê²½ì‹œ ì—…ë°ì´íŠ¸
 	virtual void OnUpdateWorldTransform() {};
-	// ÀÎÇ² ¾×¼Ç
+	// ì¸í’‹ ì•¡ì…˜
 
 	virtual void Remove() {};
 

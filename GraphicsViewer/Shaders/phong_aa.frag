@@ -1,9 +1,9 @@
-#version 330
+ï»¿#version 330
 
 in vec2 fragTexCoord;
-// ±×¸²ÀÚ
+// ê·¸ë¦¼ì
 uniform sampler2D uShadow;
-// ÄÃ·¯ ¹öÆÛ¿¡ »öÃâ·Â
+// ì»¬ëŸ¬ ë²„í¼ì— ìƒ‰ì¶œë ¥
 out vec4 outColor;
 
 void main() 

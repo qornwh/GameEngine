@@ -1,4 +1,4 @@
-#include "GameWorld.h"
+ï»¿#include "GameWorld.h"
 #include "Actor.h"
 #include "Renderer.h"
 #include "GameEngine.h"
@@ -23,15 +23,15 @@ GameWorld::~GameWorld()
 
 void GameWorld::Update()
 {
-	// ÀÎÇ²ÀÔ·Â
-	// ÇöÀç ÀÔ·ÂµÈ ¸ğµç ÀÔ·Â ¿¢ÅÍ¿¡ ³Ñ±â±â or Àü¿ªº¯¼ö µî·ÏÈÄ ¾×ÅÍ,ÄÄÆ÷³ÍÆ®¿¡¼­ °¡Á®¿Í¼­ Ã³¸®
+	// ì¸í’‹ì…ë ¥
+	// í˜„ì¬ ì…ë ¥ëœ ëª¨ë“  ì…ë ¥ ì—‘í„°ì— ë„˜ê¸°ê¸° or ì „ì—­ë³€ìˆ˜ ë“±ë¡í›„ ì•¡í„°,ì»´í¬ë„ŒíŠ¸ì—ì„œ ê°€ì ¸ì™€ì„œ ì²˜ë¦¬
 
-	// ¾×ÅÍ ¾÷µ¥ÀÌÆ®
+	// ì•¡í„° ì—…ë°ì´íŠ¸
 	float deltaTime = (static_cast<float>(glfwGetTime()) - time_) * 1000.f;
 	time_ = static_cast<float>(glfwGetTime());
 	root_actor_->Update(deltaTime);
 
-	// ±×¸®±â
+	// ê·¸ë¦¬ê¸°
 	renderer_->Draw();
 }
 
