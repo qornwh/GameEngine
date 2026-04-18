@@ -1,4 +1,4 @@
-#include "Spotlight.h"
+﻿#include "Spotlight.h"
 
 SpotlightActor::SpotlightActor()
 {

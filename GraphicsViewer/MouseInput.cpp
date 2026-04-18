@@ -1,4 +1,4 @@
-#include "MouseInput.h"
+﻿#include "MouseInput.h"
 
 MouseInput::MouseInput() : x_(0), y_(0), left_(MouseState::NONE), right_(MouseState::NONE), wheel_(MouseState::NONE)
 {

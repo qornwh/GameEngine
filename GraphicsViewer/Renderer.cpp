@@ -1,11 +1,11 @@
-#include "Renderer.h"
+ï»¿#include "Renderer.h"
 
 #include <GLFW/glfw3.h>
-#include <glm/glm.hpp>                   // ±âº» Å¸ÀÔ, ¿¬»ê
-#include <glm/gtc/matrix_transform.hpp>  // º¯È¯ ÇÔ¼ö
-#include <glm/gtc/type_ptr.hpp>          // value_ptr (OpenGL ³Ñ±æ ¶§)
-#include <glm/gtc/quaternion.hpp>        // ÄõÅÍ´Ï¾ð
-#include <glm/gtx/quaternion.hpp>        // ÄõÅÍ´Ï¾ð º¯È¯ ÇÔ¼ö (optional)
+#include <glm/glm.hpp>                   // ê¸°ë³¸ íƒ€ìž…, ì—°ì‚°
+#include <glm/gtc/matrix_transform.hpp>  // ë³€í™˜ í•¨ìˆ˜
+#include <glm/gtc/type_ptr.hpp>          // value_ptr (OpenGL ë„˜ê¸¸ ë•Œ)
+#include <glm/gtc/quaternion.hpp>        // ì¿¼í„°ë‹ˆì–¸
+#include <glm/gtx/quaternion.hpp>        // ì¿¼í„°ë‹ˆì–¸ ë³€í™˜ í•¨ìˆ˜ (optional)
 
 #include "GameWorld.h"
 #include "Actor.h"
@@ -18,7 +18,7 @@
 
 Renderer::Renderer()
 {
-	// µðÆúÆ® ÅØ½ºÃ³ ·Îµå
+	// ë””í´íŠ¸ í…ìŠ¤ì²˜ ë¡œë“œ
 	texture_.Load("Assets/base/base.png");
 }
 
@@ -52,8 +52,8 @@ void Renderer::Draw()
 	if (dirLight == nullptr)
 		return;
 
-	// ±×¸²ÀÚ ÅØ½ºÃ³ ±íÀÌ 
-	// ºû °ø°£ º¯È¯
+	// ê·¸ë¦¼ìž í…ìŠ¤ì²˜ ê¹Šì´
+	// ë¹› ê³µê°„ ë³€í™˜
 	float nearPlane = 0.1f, farPlane = 7.5f;
 	glm::mat4 lightProjection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, nearPlane, farPlane);
 	glm::mat4 lightView = glm::lookAt(dirLight->GetPosition(), glm::vec3(0.f), vec3Up);
@@ -66,10 +66,11 @@ void Renderer::Draw()
 	glActiveTexture(GL_TEXTURE1);
 	SceneDraw(shadowShader_);
 
-	// È­¸é
-	glBindFramebuffer(GL_FRAMEBUFFER, 0); 
-	glViewport(0, 0, 1024, 720);
-	// ¹æÇâ±¤
+	// í™”ë©´
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	auto& engine = GameEngine::GetInstance();
+	glViewport(0, 0, engine.GetWidth(), engine.GetHeight());
+	// ë°©í–¥ê´‘
 	shader_.SetActive();
 	shader_.SetUniformVec3("uDirectLight.direction", dirLight->GetForward());
 	auto& dl = dirLight->GetDirectionalLight();
@@ -118,7 +119,7 @@ void Renderer::SceneDraw(Shader& shader)
 
 	for (auto comp : comps_)
 	{
-		// ½ºÄÉÀÏ È¸Àü À§Ä¡
+		// ìŠ¤ì¼€ì¼ íšŒì „ ìœ„ì¹˜
 		glm::vec3& position = comp->GetActor()->GetPosition();
 		glm::vec3& rotate = comp->GetActor()->GetRotate();
 		glm::vec3& scale = comp->GetActor()->GetScale();
