@@ -1,4 +1,4 @@
-﻿#version 330
+#version 330
 
 in vec2 fragTexCoord;
 // 그림자
