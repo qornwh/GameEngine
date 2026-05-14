@@ -72,7 +72,7 @@ void Renderer::Draw()
 	glViewport(0, 0, engine.GetWidth(), engine.GetHeight());
 	// 방향광
 	shader_.SetActive();
-	shader_.SetUniformVec3("uDirectLight.direction", dirLight->GetForward());
+	shader_.SetUniformVec3("uDirectLight.direction", dirLight->GetForwardVector());
 	auto& dl = dirLight->GetDirectionalLight();
 	shader_.SetUniformVec3("uDirectLight.ambient", dl.ambient);
 	shader_.SetUniformVec3("uDirectLight.diffuse", dl.diffuse);

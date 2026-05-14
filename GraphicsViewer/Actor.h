@@ -28,10 +28,13 @@ public:
 	void AddComponent(Component* comp);
 	void RemoveComponent(Component* comp);
 
+	virtual glm::vec3 GetForwardVector();
+	virtual glm::vec3 GetRightVector();
+	virtual glm::vec3 GetUpVector();
+
 	glm::vec3& GetScale() { return scale_; }
 	glm::vec3& GetPosition() { return position_; }
 	glm::vec3& GetRotate() { return rotate_; }
-	virtual glm::vec3 GetForward();
 
 	const std::vector<Actor*>& GetChildren() { return children_; }
 	const std::vector<Component*>& GetComponent() { return components_; }

@@ -98,7 +98,7 @@ void Actor::RemoveComponent(Component* comp)
 	}
 }
 
-glm::vec3 Actor::GetForward()
+glm::vec3 Actor::GetForwardVector()
 {
 	float pitchRad = glm::radians(rotate_.x);
 	float yawRad = glm::radians(rotate_.y);
@@ -108,4 +108,21 @@ glm::vec3 Actor::GetForward()
 	forward.y = sin(pitchRad);
 	forward.z = cos(pitchRad) * sin(yawRad);
 	return glm::normalize(forward);
+}
+
+glm::vec3 Actor::GetRightVector()
+{
+	glm::vec3 forward = GetForwardVector();
+	glm::vec3 right = glm::normalize(glm::cross(forward, glm::vec3(0, 1, 0)));
+
+	return right;
+}
+
+glm::vec3 Actor::GetUpVector()
+{
+	glm::vec3 forward = GetForwardVector();
+	glm::vec3 right = glm::normalize(glm::cross(forward, glm::vec3(0, 1, 0)));
+	glm::vec3 up = glm::normalize(glm::cross(right, forward));
+
+	return up;
 }

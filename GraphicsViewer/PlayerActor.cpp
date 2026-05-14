@@ -27,18 +27,23 @@ void PlayerActor::Update(float deltaTime)
 		glm::vec3 inputDir(0.0f);
 
 		// 기준은 카메라 방향
-		glm::vec3 camForward = glm::normalize(glm::vec3(camera_->GetForward().x, camera_->GetForward().y, camera_->GetForward().z));
-		glm::vec3 camRight = -glm::normalize(glm::cross(glm::vec3(0.0f, 1.0f, 0.0f), camForward)); // 오른쪽 벡터
+		glm::vec3 forward = GetForwardVector();
+		glm::vec3 right = GetRightVector(); // 오른쪽 벡터
+		glm::vec3 up = GetUpVector(); // 오른쪽 벡터
 
 		// 키보드 입력 → 입력 벡터 누적
 		if (KeyBoardInput::GetInstance().GetKey(GLFW_KEY_W))
-			inputDir += camForward;
+			inputDir += forward;
 		if (KeyBoardInput::GetInstance().GetKey(GLFW_KEY_S))
-			inputDir -= camForward;
+			inputDir -= forward;
 		if (KeyBoardInput::GetInstance().GetKey(GLFW_KEY_D))
-			inputDir += camRight;
+			inputDir += right;
 		if (KeyBoardInput::GetInstance().GetKey(GLFW_KEY_A))
-			inputDir -= camRight;
+			inputDir -= right;
+		if (KeyBoardInput::GetInstance().GetKey(GLFW_KEY_Q))
+			inputDir += up;
+		if (KeyBoardInput::GetInstance().GetKey(GLFW_KEY_E))
+			inputDir -= up;
 
 		moveComp_->Input(inputDir);
 		moveComp_->Update(deltaTime);

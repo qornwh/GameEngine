@@ -58,7 +58,7 @@ glm::mat4 CameraActor::GetView()
 		return glm::translate(glm::mat4(1.f), glm::vec3(-p, 0.f));
 	}
 
-	glm::mat4 view = glm::lookAt(GetPosition(), GetPosition() + GetForward(), vec3Up);
+	glm::mat4 view = glm::lookAt(GetPosition(), GetPosition() + GetForwardVector(), vec3Up);
 	return view;
 }
 
@@ -68,7 +68,7 @@ void CameraActor::SetActive()
 	Game::World()->SetMainCamera(this);
 }
 
-glm::vec3 CameraActor::GetForward()
+glm::vec3 CameraActor::GetForwardVector()
 {
 	// 카메라만 전방벡터 따로 간다?
 	float yawRad = glm::radians(GetRotate().x);
