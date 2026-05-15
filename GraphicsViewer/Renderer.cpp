@@ -56,7 +56,7 @@ void Renderer::Draw()
 	// 빛 공간 변환
 	float nearPlane = 0.1f, farPlane = 7.5f;
 	glm::mat4 lightProjection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, nearPlane, farPlane);
-	glm::mat4 lightView = glm::lookAt(dirLight->GetPosition(), glm::vec3(0.f), vec3Up);
+	glm::mat4 lightView = glm::lookAt(dirLight->GetPosition(), dirLight->GetPosition() + dirLight->GetForwardVector(), vec3Up);
 	glm::mat4 lightSpaceMatrix = lightProjection * lightView;
 
 	shadowShader_.SetActive();
@@ -121,11 +121,10 @@ void Renderer::SceneDraw(Shader& shader)
 	{
 		// 스케일 회전 위치
 		glm::vec3& position = comp->GetActor()->GetPosition();
-		glm::vec3& rotate = comp->GetActor()->GetRotate();
 		glm::vec3& scale = comp->GetActor()->GetScale();
 		glm::mat4 worldTransform = glm::mat4(1.0f);
 		worldTransform = glm::translate(worldTransform, position);
-		worldTransform = worldTransform * glm::toMat4(glm::quat(glm::radians(rotate)));
+		worldTransform = worldTransform * glm::toMat4(comp->GetActor()->GetQuaternion());
 		worldTransform = glm::scale(worldTransform, scale);
 		shader.SetUniformMat4("uWorldTransform", worldTransform);
 		texture_.SetActive(shader);

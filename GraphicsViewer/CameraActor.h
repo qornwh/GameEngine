@@ -33,7 +33,6 @@ public:
 	void SetActive();
 
 	glm::mat4 GetView();
-	glm::vec3 GetForwardVector() override;
 
 	void Update(float deltaTime) override;
 

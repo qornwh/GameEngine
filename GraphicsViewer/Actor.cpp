@@ -9,6 +9,7 @@ Actor::Actor()
 	scale_ = glm::vec3(1.f, 1.f, 1.f);
 	position_ = glm::vec3(0.f, 0.f, 0.f);
 	rotate_ = glm::vec3(0.f, 0.f, 0.f);
+	quaternion_ = glm::quat(1.f, 0.f, 0.f, 0.f);
 }
 
 Actor::~Actor()
@@ -46,6 +47,8 @@ void Actor::Destory()
 
 void Actor::Init(glm::vec3 position, glm::vec3 rotate)
 {
+	SetPosition(position);
+	SetRotate(rotate);
 }
 
 void Actor::SetScale(const glm::vec3& scale)
@@ -61,6 +64,40 @@ void Actor::SetPosition(const glm::vec3& position)
 void Actor::SetRotate(const glm::vec3& rotate)
 {
 	rotate_ = rotate;
+	quaternion_ = glm::quat(glm::radians(rotate_));
+}
+
+void Actor::SetQuaternion(const glm::quat& quaternion)
+{
+	quaternion_ = glm::normalize(quaternion);
+	rotate_ = glm::degrees(glm::eulerAngles(quaternion_));
+}
+
+void Actor::LookAt(const glm::vec3& target, const glm::vec3& up)
+{
+	glm::vec3 direction = target - position_;
+	if (glm::dot(direction, direction) <= 0.000001f)
+	{
+		return;
+	}
+
+	glm::vec3 forward = glm::normalize(direction);
+	glm::vec3 right = glm::cross(forward, up);
+
+	if (glm::dot(right, right) <= 0.000001f)
+	{
+		glm::vec3 fallbackUp = glm::abs(glm::dot(forward, vec3UnitZ)) > 0.999f ? vec3UnitY : vec3UnitZ;
+		right = glm::cross(forward, fallbackUp);
+	}
+
+	right = glm::normalize(right);
+	glm::vec3 correctedUp = glm::normalize(glm::cross(right, forward));
+
+	glm::mat3 rotation;
+	rotation[0] = right;
+	rotation[1] = correctedUp;
+	rotation[2] = -forward;
+	SetQuaternion(glm::quat_cast(rotation));
 }
 
 void Actor::AddChild(Actor* child)
@@ -100,29 +137,15 @@ void Actor::RemoveComponent(Component* comp)
 
 glm::vec3 Actor::GetForwardVector()
 {
-	float pitchRad = glm::radians(rotate_.x);
-	float yawRad = glm::radians(rotate_.y);
-
-	glm::vec3 forward;
-	forward.x = cos(pitchRad) * cos(yawRad);
-	forward.y = sin(pitchRad);
-	forward.z = cos(pitchRad) * sin(yawRad);
-	return glm::normalize(forward);
+	return glm::normalize(quaternion_ * vec3Forword);
 }
 
 glm::vec3 Actor::GetRightVector()
 {
-	glm::vec3 forward = GetForwardVector();
-	glm::vec3 right = glm::normalize(glm::cross(forward, glm::vec3(0, 1, 0)));
-
-	return right;
+	return glm::normalize(quaternion_ * vec3Right);
 }
 
 glm::vec3 Actor::GetUpVector()
 {
-	glm::vec3 forward = GetForwardVector();
-	glm::vec3 right = glm::normalize(glm::cross(forward, glm::vec3(0, 1, 0)));
-	glm::vec3 up = glm::normalize(glm::cross(right, forward));
-
-	return up;
+	return glm::normalize(quaternion_ * vec3Up);
 }
