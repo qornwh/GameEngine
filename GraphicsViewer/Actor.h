@@ -22,16 +22,22 @@ public:
 	void SetScale(const glm::vec3& scale);
 	void SetPosition(const glm::vec3& position);
 	void SetRotate(const glm::vec3& rotate);
+	void SetQuaternion(const glm::quat& quaternion);
+	void LookAt(const glm::vec3& target, const glm::vec3& up = vec3Up);
 
 	void AddChild(Actor* child);
 	bool RemoveChild(Actor* child);
 	void AddComponent(Component* comp);
 	void RemoveComponent(Component* comp);
 
+	virtual glm::vec3 GetForwardVector();
+	virtual glm::vec3 GetRightVector();
+	virtual glm::vec3 GetUpVector();
+
 	glm::vec3& GetScale() { return scale_; }
 	glm::vec3& GetPosition() { return position_; }
 	glm::vec3& GetRotate() { return rotate_; }
-	virtual glm::vec3 GetForward();
+	const glm::quat& GetQuaternion() const { return quaternion_; }
 
 	const std::vector<Actor*>& GetChildren() { return children_; }
 	const std::vector<Component*>& GetComponent() { return components_; }
@@ -40,6 +46,7 @@ private:
 	glm::vec3 scale_;
 	glm::vec3 position_;
 	glm::vec3 rotate_;
+	glm::quat quaternion_;
 
 	std::vector<Actor*> children_;
 	std::vector<Component*> components_;

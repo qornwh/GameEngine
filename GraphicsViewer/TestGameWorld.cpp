@@ -42,6 +42,7 @@ void TestGameWorld::Start()
 	directionalLight->init();
 
 	directionalLight->SetPosition(glm::vec3(1.f, 1.f, 1.f));
+	directionalLight->LookAt(glm::vec3(0.f));
 	SetDirectionalLight(directionalLight);
 
 	SetMainCamera(camera);
