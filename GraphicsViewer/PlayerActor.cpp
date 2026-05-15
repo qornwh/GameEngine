@@ -51,7 +51,7 @@ void PlayerActor::Update(float deltaTime)
 
 	if (camera_ != nullptr)
 	{
-		camera_->SetRotate(GetRotate());
+		camera_->SetQuaternion(GetQuaternion());
 		camera_->SetPosition(GetPosition());
 	}
 }
@@ -83,8 +83,8 @@ void PlayerActor::CameraMove()
 	last_pos_x_ = x;
 	last_pos_y_ = y;
 
-	float yaw = GetRotate().x;
-	float pitch = GetRotate().y;
+	float pitch = GetRotate().x;
+	float yaw = GetRotate().y;
 	float roll = GetRotate().z;
 
 	yaw += offsetX;
@@ -95,5 +95,5 @@ void PlayerActor::CameraMove()
 	else if (pitch < -89.f)
 		pitch = -89.f;
 
-	SetRotate(glm::vec3(yaw, pitch, roll));
+	SetRotate(glm::vec3(pitch, yaw, roll));
 }
